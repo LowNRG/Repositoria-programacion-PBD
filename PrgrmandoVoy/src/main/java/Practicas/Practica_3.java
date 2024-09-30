@@ -26,7 +26,7 @@ public class Practica_3 {
             System.out.println("Lo siento " + nombre + ". No puedes votar.");
             int aniosParaVotar = 18 - edad;  // Calcular cuántos años le faltan
             System.out.println("Te faltan " + aniosParaVotar + " años para ser mayor de edad.");
-        }
+        } //prueba
 
         // Cerrar el scanner
         scanner.close();
