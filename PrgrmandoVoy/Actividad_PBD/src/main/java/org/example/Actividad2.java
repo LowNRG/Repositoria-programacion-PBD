@@ -11,28 +11,33 @@ public class Actividad2 {
         String modo = sc.nextLine();
 
         int edad = 0;
-        if (modo.equals("1")) {
-            System.out.println("Introduce tu año de nacimiento: ");
-            String anyoNacimiento = sc.next();
-            int anyoNac = 0;
-            try {
-                anyoNac = Integer.parseInt(anyoNacimiento);
-            } catch (NumberFormatException e) {
-                System.out.println("Error: introducir un numero válido.");
-            }
-            int añohoy = hoy.getYear();
-            if (anyoNac < 1900 || anyoNac > añohoy) {
-                System.out.println("el año introducido no es correcto");
+        switch (modo){
+            case "1": {
+                System.out.println("Introduce tu año de nacimiento: ");
+                String anyoNacimiento = sc.next();
+                int anyoNac = 0;
+                try {
+                    anyoNac = Integer.parseInt(anyoNacimiento);
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: introducir un numero válido.");
+                }
+                int añohoy = hoy.getYear();
+                if (anyoNac < 1900 || anyoNac > añohoy) {
+                    System.out.println("el año introducido no es correcto");
+                }
+                break;
             }
 
-        } else if (modo.equals("2")) {
-            try {
-                System.out.println("Introduce tu edad: ");
-                edad = sc.nextInt();
-                if (edad >= 0) {
+            case "2": {
+                try {
+                    System.out.println("Introduce tu edad: ");
+                    edad = sc.nextInt();
+                    if (edad >= 0) {
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: introuducir un numero válido.");
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Error: introuducir un numero válido.");
+                break;
             }
         }
         int añohoy = hoy.getYear();
@@ -50,6 +55,8 @@ public class Actividad2 {
             System.out.println("Eres Generacion Y o Millenial");
         } else if (año >= 1995 && año <= añohoy) {
             System.out.println("Eres Generacion Z o Centennial");
+        }else {
+            System.out.println("No eres de ninguna generacion");
         }
     }}
 
