@@ -77,10 +77,11 @@ public class Bucles {
         Scanner entrada= new Scanner(System.in);
         System.out.println("Introduce una cadena: ");
         String cadena = entrada.next();
+
         String inversion= "";
         for(int i = cadena.length() -1; i>=0; i--){
             inversion += cadena.charAt(i);
         }
-        System.out.println("inversion");
+        System.out.println(inversion);
     }
 }
