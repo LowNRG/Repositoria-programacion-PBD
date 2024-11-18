@@ -12,15 +12,15 @@ public class Samurai_Battle {
             int suma;
             do {
                 System.out.println("Introduce la potencia de los 7 samurais: ");
-                String potencia = entrada.nextLine();
-                String[] subpotencia = potencia.split(" "); //usando el split para separar los numeros del array
+                String subpotencia = entrada.nextLine();
+                String[] potencia = subpotencia.split(" "); //usando el split para separar los numeros del array
                 suma = 0;
                 try {
                     for (int j = 0; j < 7; j++) {
-                        int numero = Integer.parseInt(subpotencia[j]); //aqui pasando los numeros del array de string a int
+                        int numero = Integer.parseInt(potencia[j]); //aqui pasando los numeros del array de string a int
                         suma += numero;
                         if (i == 1) {
-                            potenciaEquipo1[j] = numero;
+                            potenciaEquipo1[j] = numero;//asignando los numeros a un array distinto
                         } else {
                             potenciaEquipo2[j] = numero;
                         }
@@ -35,8 +35,8 @@ public class Samurai_Battle {
 
             } while (suma != 30);
             System.out.println("Equipo completado"); //Aqui si la suma de los que has puesto si da 30 entonces te dice completo
-
         }
+
         int turnoInicial = random.nextInt(7); //sacando el primer turno random
         System.out.println("¡Empieza la batalla!");
         System.out.println("La batalla inicia con el Samurai " + (turnoInicial + 1));
@@ -44,8 +44,8 @@ public class Samurai_Battle {
         int bajas1=0;
         int bajas2=0;
 
-        for (int i = 0; i < 7; i++) { //al principio hice un switch case pero esto es mucho mas sencillo
-            int turno = (turnoInicial + i) % 7;  // Cálculo circular para el turno
+        for (int i = 0; i < 7; i++) { //al principio hice un switch case pero esto es mucho mas sencillo para enfrentar los samurais
+            int turno = (turnoInicial + i) % 7;  // Calculo circular para el turno, aqui  necesite ayuda
             System.out.println("Samurai " + (turno + 1) + "---> " + potenciaEquipo1[turno] + " vs "+ potenciaEquipo2[turno]);
             if (potenciaEquipo1[turno] > potenciaEquipo2[turno]) {
                 System.out.println("Gana Equipo 1.");
