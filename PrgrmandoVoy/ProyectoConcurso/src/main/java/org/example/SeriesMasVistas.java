@@ -34,36 +34,52 @@ public class SeriesMasVistas {
         }
     }
 
+    /**
+     * Este metodo existe basicamente para ser llamado por el caso de prueba
+     * @param serie
+     * @param vuelta
+     * @param series
+     * @param tiempos
+     */
     public static void seriesmasvistas(String serie, int vuelta, String[] series, Integer[] tiempos) {
         inputUser(series, tiempos, serie, vuelta);
     }
 
     /**
-     *
+     * Este metodo coje la entrada del usuario, la divide en tiempo y serie, lo compara con entradas previas de otras vueltas
+        y si el tiempo es mayor a 30 min lo agrega al array.
      * @param serie - El nombre individual de la serie introducida en el input
      */
     public static void inputUser(String[] series, Integer[] tiempos, String serie, int vuelta) {
         String[] partes = serie.split(" ");
-        String nombreserie = String.join(" ", Arrays.copyOfRange(partes, 0, partes.length - 1));
+        String nombreserie = String.join(" ", Arrays.copyOfRange(partes, 0, partes.length - 1)); //guardar la serie
         int tiempo = Integer.parseInt(partes[partes.length - 1]); // guardar el tiempo
+
         // Verificar si la serie ya existe
         boolean encontrada = false;
         for (int i = 0; i < vuelta; i++) {
-            if (vuelta == 0)
+            if (vuelta == 0) {
                 break;
+            }
             if (series[i] != null && series[i].equals(nombreserie) && tiempo > 30) {
                 tiempos[i] += tiempo; // Acumular tiempo
                 encontrada = true;
                 break;
             }
         }
-        // Si no se encontró, agregar nueva serie
+        // Si no se encontró y el tiempo es mayor a 30, agregar nueva serie
         if (!encontrada && tiempo > 30) {
             series[vuelta] = nombreserie;
             tiempos[vuelta] = tiempo;
         }
     }
 
+    /**
+     * En este metodo ordenamos el array del tiempo en una copia para saber los mas altos y su respectiva posicion en el array original
+      para poder compararlo con la posicion del nombre de la serie en el array
+     * @param series
+     * @param tiempos
+     */
     public static void mostrarTop3(String[] series, Integer[] tiempos) {
         Integer[] copiatiempo = Arrays.copyOf(tiempos, 50);
         Arrays.sort(copiatiempo, Collections.reverseOrder());
