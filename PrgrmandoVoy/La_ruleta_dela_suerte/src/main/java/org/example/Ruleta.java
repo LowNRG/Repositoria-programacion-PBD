@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Random;
 public class Ruleta {
-    public void Rueleteo(String args) {
+    public void Ruleteo(String args) {
         Scanner entrada = new Scanner(System.in);
         String colores[] = {"rojo", "negro"};
         Integer numeros[] = new Integer[37];
@@ -36,6 +36,11 @@ public class Ruleta {
         String sorteo_color = colores[aleatorio.nextInt(colores.length)];
         int sorteo_numero = numeros[aleatorio.nextInt(numeros.length)];
         String sorteo_par = "";
+        while(sorteo_numero!=0){
+            if(){
+
+            }
+        }
         
 
     }
