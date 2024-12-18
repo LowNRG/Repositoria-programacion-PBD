@@ -9,7 +9,7 @@ public class SeriesMasVistas {
     /**
      * @author - Alberto Planelles
      * @param vuelta - contador para saber en que vuelta del loop estamos
-     * @param series - array con los nombres de las series
+     * @param series - nuevo array con los nombres de las series
      * @param tiempos - array con los tiempos de las series
      * @return - devuelve un booleano
      */
@@ -25,21 +25,29 @@ public class SeriesMasVistas {
         }
     } // casoDePrueba
 
-    public static void main(String[] args) {
+    /**
+     *
+     */
+    public static void main(String[] args) { // Ajustar firma del main
         int vuelta = 0;
         String[] series = new String[50]; // Max 50 series
         Integer[] tiempos = new Integer[50];
-        while (casoDePrueba(vuelta, series, tiempos)) {
+
+        while (true) {
+            if (!casoDePrueba(vuelta, series, tiempos)) {
+                break;
+            }
             vuelta++;
         }
     }
 
+
     /**
      * Este metodo existe basicamente para ser llamado por el caso de prueba
-     * @param serie
-     * @param vuelta
-     * @param series
-     * @param tiempos
+     * @param serie debemos llamar a serie pues esta dentro del metodo de inpuUser y es la entrada del usuario
+     * @param vuelta el contador vuelta para indicar en que loop estas
+     * @param series el array lleno del nombre de la serie introducida
+     * @param tiempos el array lleno del tiempo introducido mayor de 30 y acumulado en serie introducida igual
      */
     public static void seriesmasvistas(String serie, int vuelta, String[] series, Integer[] tiempos) {
         inputUser(series, tiempos, serie, vuelta);
@@ -77,30 +85,26 @@ public class SeriesMasVistas {
     /**
      * En este metodo ordenamos el array del tiempo en una copia para saber los mas altos y su respectiva posicion en el array original
       para poder compararlo con la posicion del nombre de la serie en el array
-     * @param series
-     * @param tiempos
+     * @param series en este metodo el array esta lleno de nombres de series y es rankeado por sus tiempos acumulados correspondientes
+     * @param tiempos creo una copia y ordena el array de forma descendiente para saber en que posicion esta la series correspondiente en el array original
      */
     public static void mostrarTop3(String[] series, Integer[] tiempos) {
         Integer[] copiatiempo = Arrays.copyOf(tiempos, 50);
         Arrays.sort(copiatiempo, Collections.reverseOrder());
-        int tiempo1 = copiatiempo[0];
-        int tiempo2 = copiatiempo[1];
-        int tiempo3 = copiatiempo[2];
 
-        String serie1 = "";
-        String serie2 = "";
-        String serie3 = "";
-
-        for(int i =0; i<series.length;i++){
-            if(tiempos[i] == tiempo1){
-                serie1 = series[i];
-            }else if(tiempos[i] == tiempo2){
-                serie2 = series[i];
-            }else if(tiempos[i] == tiempo3){
-                serie3 = series[i];
+        int top = 0;
+        for (int i = 0; i < copiatiempo.length && top < 3; i++) {
+            if (copiatiempo[i] == null || copiatiempo[i] == 0) {
+                continue; // Ignorar tiempos nulos o cero
+            }
+            for (int j = 0; j < tiempos.length; j++) {
+                if (tiempos[j] != null && tiempos[j].equals(copiatiempo[i])) {
+                    System.out.println(series[j]);
+                    top++;
+                    break; // Solo un resultado por serie
+                }
             }
         }
-        System.out.println(serie1 + "/n" + serie2 + "/n" + serie3);
 
     }
 }
