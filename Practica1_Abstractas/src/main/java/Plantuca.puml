@@ -1,0 +1,49 @@
+@startuml
+
+abstract class MetodoPago {
+    MetodoPago()
+    abstract void procesarPago(double importe)
+}
+
+class Bizum extends MetodoPago {
+    - String telefono
+    - int pin
+    + Bizum(String telefono, int pin)
+    + boolean validarBizum(String telefono, int pin)
+    + String getTelefono()
+    + void setTelefono(String telefono)
+    + int getPin()
+    + void setPin(int pin)
+    + void procesarPago(double importe)
+}
+
+class PayPal extends MetodoPago {
+    - String cuenta
+    - double saldo
+    + PayPal(String cuenta, double saldo)
+    + boolean validarPaypal(String cuenta, double saldo, double importe)
+    + void procesarPago(double importe)
+}
+
+class TarjetaCredito extends MetodoPago {
+    - String numeroTarjeta
+    - String tipo
+    + TarjetaCredito(String numeroTarjeta, String tipo)
+    + boolean validarTarjeta(String numeroTarjeta, String tipo)
+    + String getNumeroTarjeta()
+    + void setNumeroTarjeta(String numeroTarjeta)
+    + String getTipo()
+    + void setTipo(String tipo)
+    + void procesarPago(double importe)
+}
+
+class Tienda {
+    + static void realizarPago(MetodoPago metodo, double importe)
+    + static void iniciarPago()
+}
+
+MetodoPago <|-- Bizum
+MetodoPago <|-- PayPal
+MetodoPago <|-- TarjetaCredito
+
+@enduml
